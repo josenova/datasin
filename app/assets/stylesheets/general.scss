@@ -30,6 +30,9 @@ header {
   background:$dark-blue;
   padding-left: 1.3%;
   overflow:hidden;
+  position: fixed;
+  width: 100%;
+  z-index:1;
 }
 
 #logo {
@@ -76,6 +79,25 @@ header {
   cursor:pointer;
 }
 
+#log_out a {
+  font-family: entypo;
+  float: right;
+    width: 52px;
+  color: $orange;
+  height: 42px;
+  font-size: 40px;
+  line-height: 43px;
+  text-align: center;
+  text-decoration:none;
+  cursor:pointer;
+  border-left:1px solid $light-blue;
+}
+
+#content {
+  padding-top:42px;
+}
+
+
 footer {
   overflow: hidden;
   position: absolute;
@@ -83,7 +105,7 @@ footer {
   width: 100%;
 }
 
-/************************************ FONT FACE ***********************************/
+/************************************ TYPE ***********************************/
 
 @font-face {
   font-family: 'entypo';
@@ -95,4 +117,134 @@ footer {
   font-weight: normal;
   font-style: normal;
   
+}
+
+
+h2 {
+  font-family: $secondary-font;
+}
+
+h5 {
+  color:$dark-blue;
+  text-transform:uppercase;
+  font-family:$secondary-font;
+  font-size:16px;
+}
+
+/************************************ SIGN IN *********************************/
+
+
+#sign_in {
+  background:$white;
+  margin: 0 auto;
+  width: 300px;
+  margin-top: 150px;
+  position: relative;
+  border-radius: 3px;
+  overflow:hidden;
+}
+
+#sign_in h2 {
+  text-align:center;
+    font-size: 18px;
+  padding: 8px 0 3px;
+  background-color: #eee;
+}
+
+#sign_in input {
+  position: relative;
+  height: 30px;
+  width: 85%;
+  margin-left: 15%;
+    padding: 0 8px;
+    font-size:13px;
+    border-top:1px solid #eee;
+    
+}
+
+.field_icon {
+  font-family: entypo;
+  width:15%;
+  height:30px;
+  color:#c0c0c0;
+  background-color:$gray;
+  position:absolute;
+  display:inline-block;
+  font-size: 30px;
+  line-height: 1.1;
+  text-align: center;
+  border-top:1px solid #eee;
+}
+
+#sign_in input[type="submit"] {
+  background-color: #E74C3C;
+  color: #FFFFFF;
+  border: 1px solid #D63B2B;
+  margin: 0 auto;
+  line-height: 30px;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 32px;
+  padding: 0;
+  width: 35px;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-family:entypo;
+
+}
+
+/*********************************** TABLE ***************************/
+
+table {
+width:100%;
+margin-bottom:2.12%;
+}
+
+th {
+background-color: #333;
+  color: #fff;
+  margin: 0;
+  padding: 2px 20px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 12px;
+  font-weight:normal;
+  }
+  
+  .odd {
+  background-color:$gray;
+  }
+  
+  .even {
+  background-color:$white;
+  }
+  
+  .odd td, .even td {
+   text-align:right;
+   font-size:13px;
+   padding: 1px 10px;
+     border-right: 1px solid #ddd;
+  }
+  
+/****************************** NOTICE / ALERT **************************/
+
+#error, #alert {
+  background:#eededf;
+  color:#ae4f50;
+  border:1px solid #ae4f50;
+  border-radius: 1px;
+  padding: 3px 5px;
+  position:absolute;
+}
+
+
+#notice {
+  color: #376130;
+  background: #def1d9;
+  padding: 0.5%;
+  border: 1px solid #598350;
+  width:200px;
+  position:absolute;
 }

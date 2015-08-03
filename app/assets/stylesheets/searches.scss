@@ -1,0 +1,173 @@
+// Place all the styles related to the Searches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'variables';
+
+
+#main_logo {
+  background: url(asset-path('logo-white2.png'));
+  height: 64px;
+  width: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  margin-top: 11%;
+}
+
+.searches #new_search {
+  padding: 0;
+  width: 402px;
+  margin: 0 auto;
+  top: 24px;
+  position: relative;
+}
+
+.searches #new_search input {
+  border:1px solid $light-blue-shade;
+  width:400px;
+  height:40px;
+  display:inline-block;
+  margin-bottom: 15px;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.searches #new_search input[type="submit"] {
+	width:200px;
+	text-transform:uppercase;
+	background-color:$orange;
+	color:$white;
+	border:1px solid #D63B2B;
+	border-width:1px 1px 2px 1px;
+	margin:0 auto;
+	line-height:42px;
+	text-shadow: 1px 1px rgba(0,0,0,0.2);
+	cursor:pointer;
+	font-size: 12px;
+  padding: 0;
+
+}
+
+
+.summary {
+  float: left;
+  width: 33.3%;
+  height: 90px;
+  background-color:$light-blue-shade;
+}
+
+
+
+/******************************** INDEX ******************************/
+
+#sidebar {
+ background:$dark-blue;
+  width: 14.5%;
+  height: 650px;
+  position: fixed;
+  top: 43px;
+  left: 0px;
+}
+
+#results {
+  padding: 3.44%;
+  overflow:hidden;
+  margin: 0 0 0 14.5%;
+}
+
+#summary {
+ margin-bottom:2.12%;
+   display: inline-block;
+  width: 100%;
+}
+
+
+#summary h2 {
+  color:$white;
+  font-size:28px;
+  text-shadow:1px 1px 0px rgba(0,0,0,0.4);
+}
+
+#info {
+  float:left;
+}
+
+
+#info h4 {
+  font-family: 'Bebas Neue';
+  font-size: 20px;
+  color:$white;
+  float:left;
+  position: relative;
+  padding-right: 70px;
+  margin: 22px 0 0;
+  text-shadow:1px 1px rgba(0,0,0,0.4);
+}
+
+
+#info h4 span {
+  position: absolute;
+  top: -14px;
+  font-size: 16px;
+  color:$dark-blue;
+  text-shadow:none;
+}
+
+#print {
+  color:$white;
+  background-color:$orange;
+  text-decoration:none;
+  float:right;
+  display:block;
+  padding: 6px 18px 4px 42px;
+  border-bottom:2px solid #c52a1a;
+  font-size:14px;
+  position:relative;
+  top:16px;
+}
+
+#print::before {
+  content: '<';
+  font-family: entypo;
+  height: 30px;
+  width: 30px;
+  display: block;
+  font-size: 30px;
+  line-height: 0.6;
+  color: #FFFFFF;
+  position: absolute;
+  left: 14px;
+}
+
+h5 span {
+  color:#fff;
+  background:$orange;
+  border-radius: 18px;
+  width: 16px;
+  line-height: 18px;
+  height: 16px;
+  display: inline-block;
+  font-size: 12px;
+  text-align: center;
+  top: -2px;
+  margin-left: 2px;
+  position: relative;
+}
+
+li {
+  font-size:14px;
+  color:#fff;
+}
+/*********************************** TABLA MULTAS *************************/
+
+#ContentPlaceHolder1_wucAmet1_gvAmet th {
+  width: inherit;
+}
+
+#ContentPlaceHolder1_wucAmet1_gvAmet td {
+  text-align:right;
+  font-size:13px;
+  padding:1px 10px;
+  border-right:1px solid #ddd;
+}

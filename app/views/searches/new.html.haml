@@ -1,0 +1,8 @@
+#main_logo
+
+= form_for @search, :id => 'search' do |f|
+  = f.text_field :client_query, :placeholder => 'Identificación o RNC'
+  = f.text_field :vehicle_query, :placeholder => 'Placa o VIN'
+  = f.submit "Buscar", :name => nil
+  
+= render "layouts/footer"

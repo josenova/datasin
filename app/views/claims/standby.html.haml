@@ -1,6 +1,0 @@
-#main_logo
-
-= form_tag claims_path, :method => 'get', :enforce_utf8 => false, :id => 'search' do
-  = text_field_tag :cedula, params[:id], :placeholder => 'Identificación o RNC'
-  = text_field_tag :vin, params[:vin], :placeholder => 'Placa o VIN'
-  = submit_tag "Buscar", :name => nil

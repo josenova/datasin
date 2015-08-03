@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @search.user
+%p
+  %b Client query:
+  = @search.client_query
+%p
+  %b Vehicle query:
+  = @search.vehicle_query
+
+= link_to 'Edit', edit_search_path(@search)
+\|
+= link_to 'Back', searches_path

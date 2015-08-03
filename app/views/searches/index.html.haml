@@ -1,0 +1,77 @@
+#sidebar
+
+#results
+
+  - if @client
+    %div{:id => "summary"}
+      #info
+        %h2= @client.name + ' ' + @client.surname
+        - if @client.identification
+          %h4 <span>Cédula</span> #{@client.identification}
+        - if @client.gender
+          %h4 <span>Sexo</span> #{@client.gender}
+        - if @client.occupation
+          %h4 <span>Ocupación</span> #{@client.occupation}
+        - if @client.sector
+          %h4 <span>Sector</span> #{@client.sector.name}
+      = link_to 'Imprimir', '#', :id => "print"
+        
+    
+    %h5 Pólizas <span>#{@policies.count}</span> 
+    %table{:cellpading => '0', :cellspacing => 0}
+      %tr{:class => "tabletop"}
+        %th No. Póliza
+        %th Compañía
+        %th Cobertura
+        %th Fecha Inicio
+        %th Fecha Fin
+      - if @policies
+        - @policies.order("created_at desc").each do |p|
+          %tr{:class => cycle('odd', 'even')}
+            %td= p.policy
+            %td= p.insurance.company
+            %td= p.coverage
+            %td= p.start.strftime("%d/%m/%Y")
+            %td= p.end.strftime("%d/%m/%Y")
+      - else
+        %tr
+          %td.none No hay pólizas.
+ 
+    %h5 Reclamaciones <span>#{@claims.count}</span> 
+    %table{:cellpading => '0', :cellspacing => 0}
+      %tr
+        %th No. Reclamación
+        %th Vehículo
+        %th Compañía
+        %th No. Póliza
+        %th Fecha
+        %th Tipo
+        %th Estado
+      - if @claims
+        - @claims.order("created_at desc").each do |c|
+          %tr{:class => cycle('odd', 'even')}
+            %td= link_to c.number, c
+            %td= c.vehicle.vin
+            %td= c.policy.insurance.company
+            %td= c.policy.policy
+            %td= c.date.strftime("%d/%m/%Y")
+            %td= c.claim_type.name
+            %td= c.claim_status.status
+      - else
+        %tr
+          %td.none No hay reclamaciones.
+		
+    %h5 Multas
+    = raw @tickets if @tickets
+    
+    - if @history
+      - @history.order("created_at desc").each do |h|
+        %ul
+          %li Consultado por #{h.user.insurance.company} el #{h.created_at.strftime("%d/%m/%Y")}
+    - else
+      %ul
+        %li.none No hay historial.
+          
+
+        
+

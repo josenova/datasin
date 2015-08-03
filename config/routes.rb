@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
-  resources :claims, only: [:index, :show]
 
+  resources :searches, only: [:index, :show, :new, :create], :path => "search"
+  resources :claims, only: [:show]
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'claims#standby'
+  root 'searches#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

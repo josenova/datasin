@@ -12,5 +12,11 @@
     #all
       = render "layouts/header"
       #content{:class => "#{params[:controller]}"}
+        - if flash[:notice] 
+          #notice= flash[:notice]
+        - if flash[:alert] 
+          #alert= flash[:alert] 
+        - if flash[:error] 
+          #error= flash[:error] 
         = yield
-      = render "layouts/footer"
+      

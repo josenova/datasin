@@ -1,7 +1,7 @@
 class CreateVehicleModels < ActiveRecord::Migration
   def change
     create_table :vehicle_models do |t|
-      t.string :model
+      t.string :name
       t.references :vehicle_brand, index: true
 
       t.timestamps null: false

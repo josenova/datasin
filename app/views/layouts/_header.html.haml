@@ -1,6 +1,8 @@
 %header
-  #logo
-  #settings @
-  #username
-    #user_icon +
-    %span Jose Nova
+  = link_to '', root_path, :id => 'logo'
+  - if user_signed_in?  
+    #log_out= link_to "[", destroy_user_session_path, :method => :delete
+    #settings @
+    #username
+      #user_icon +
+      = current_user.name

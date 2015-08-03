@@ -1,7 +1,7 @@
 class CreateSectors < ActiveRecord::Migration
   def change
     create_table :sectors do |t|
-      t.string :sector
+      t.string :name
       t.references :city, index: true
 
       t.timestamps null: false
