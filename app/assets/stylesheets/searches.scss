@@ -159,6 +159,46 @@ li {
   font-size:14px;
   color:#fff;
 }
+
+/****************************** SIDE MENU **********************/
+
+#side_menu li {
+ position:relative;
+ 
+}
+
+#side_menu li a {
+  color: $gray;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid $light-blue;
+  display: inline-block;
+  width: 100%;
+  padding: 9px 18px 9px 39px;
+  border-left:2px solid $dark-blue;
+    font-size: 13px;
+}
+
+#side_menu #vehicle_icon {
+  background: url(asset-path('icons/car-icon.png'));
+  background-position: left 13px center;
+  background-repeat: no-repeat;
+  background-size: 10%;
+  
+}
+
+#side_menu #client_icon {
+  background: url(asset-path('icons/client-icon.png'));
+  background-position: left 13px center;
+  background-repeat: no-repeat;
+  background-size: 10%;
+  
+}
+
+#side_menu .current a {
+  border-left: 2px solid $orange;
+  
+}
 /*********************************** TABLA MULTAS *************************/
 
 #ContentPlaceHolder1_wucAmet1_gvAmet th {

@@ -1,6 +1,7 @@
 class SearchesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_target, only: [:index]
+  #before_action :create, only: [:index]
 
 
   # Results Index 
@@ -8,8 +9,8 @@ class SearchesController < ApplicationController
     if @client
       @policies = Policy.where(client_id: @client.id)
       @claims = Claim.where("policy_id = ?", @policies.each)
-      @history = Search.where("client_query = ?", @client.identification)
-      lookup_tickets(@client.identification)
+      @history = Search.where("client = ?", @client.identification)
+      #lookup_tickets(@client.identification)
     elsif @company
       @policies = Policy.where(company_id: @company.id)
       @claims = Claim.where("policy_id = ?", @policies.each)
@@ -22,7 +23,7 @@ class SearchesController < ApplicationController
   def new
     @search = Search.new
   end
-
+  
   # Save User Search
   def create
     
@@ -31,7 +32,7 @@ class SearchesController < ApplicationController
 
     respond_to do |format|
       if @search.save
-        format.html { redirect_to searches_url(:client => @search.client_query, :vehicle => @search.vehicle_query) }
+        format.html { redirect_to searches_url(:client => @search.client, :vehicle => @search.vehicle) }
       else
         format.html { render :new } #Create error page
       end
@@ -93,6 +94,8 @@ class SearchesController < ApplicationController
   
     # Never trust parameters from the scary internet, only allow the white list through.
     def search_params
-      params.require(:search).permit(:client_query, :vehicle_query)
+      params.require(:search).permit(:client, :vehicle)
     end
+    
+
 end

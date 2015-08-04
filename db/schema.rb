@@ -102,10 +102,10 @@ ActiveRecord::Schema.define(version: 20150727213118) do
 
   create_table "searches", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "client_query"
-    t.string   "vehicle_query"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "client"
+    t.string   "vehicle"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "searches", ["user_id"], name: "index_searches_on_user_id", using: :btree
