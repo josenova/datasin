@@ -2,7 +2,12 @@
   = link_to '', root_path, :id => 'logo'
   - if user_signed_in?  
     #log_out= link_to "[", destroy_user_session_path, :method => :delete
-    #settings @
+    #settings 
+      @
+      %ul#pop_menu
+        = nav_link 'Mi Perfil', '#'
+        = nav_link 'Términos y Condiciones', '#'
+        = nav_link 'Políticas de Privacidad', '#'
     #username
       #user_icon +
       = current_user.name

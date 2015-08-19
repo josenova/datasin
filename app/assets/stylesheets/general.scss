@@ -29,10 +29,10 @@ body {
 header {
   background:$dark-blue;
   padding-left: 1.3%;
-  overflow:hidden;
   position: fixed;
   width: 100%;
-  z-index:1;
+  z-index:20;
+  border-bottom:1px solid $light-blue;
 }
 
 #logo {
@@ -54,7 +54,6 @@ header {
   border:1px solid $light-blue;
   border-width:0 1px 0 1px;
   padding: 0 1.3%;
-  cursor:pointer;
   font-size:15px;
 }
 
@@ -77,6 +76,27 @@ header {
   text-align: center;
   text-decoration:none;
   cursor:pointer;
+  position:relative;
+}
+
+#pop_menu {
+    position: absolute;
+    z-index: 20;
+    background-color: #fff;
+    display:none;
+    left: -115px;
+    border-radius: 2px;
+    font-family:Calibri;
+    line-height:1;
+      text-align:left;
+      padding:7px 0;
+}
+
+#pop_menu li a {
+  text-decoration: none;
+  color:#444;
+  padding:3px 15px;
+  display:block;
 }
 
 #log_out a {

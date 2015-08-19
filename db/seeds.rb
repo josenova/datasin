@@ -79,14 +79,10 @@ insurances = Insurance.create([
 { company: 'Seguros BanReservas' }
 ])
 
-user = User.create([{ 
-email: 'novajose@gmail.com', 
-password: '12345678', 
-password_confirmation: '12345678', 
-name: 'José Raúl', 
-surname: 'Nova Rodriguez',
-insurance: Insurance.find_by(company: 'Seguros Constitución')
-}])
+user = User.create([
+{ email: 'novajose@gmail.com', password: '12345678', password_confirmation: '12345678', name: 'José Raúl', surname: 'Nova Rodriguez', insurance: Insurance.find_by(company: 'Seguros Constitución')}
+{ email: 'fernan.baez@gmail.com', password: '12345678', password_confirmation: '12345678', name: 'Fernando A.', surname: 'Báez Tavárez', insurance: Insurance.find_by(company: 'Seguros BanReservas')}
+])
 
 policies = Policy.create([
 { policy: '225010803099', coverage: true, start: '28-05-2012', end: '28-05-2013', insurance: Insurance.find_by(company: 'Seguros Constitución'), client: Client.find_by(identification: '00118530690')},

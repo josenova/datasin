@@ -10,7 +10,7 @@ class SearchesController < ApplicationController
       @policies = Policy.where(client_id: @client.id)
       @claims = Claim.where("policy_id = ?", @policies.each)
       @history = Search.where("client = ?", @client.identification)
-      #lookup_tickets(@client.identification)
+      lookup_tickets(@client.identification)
     elsif @company
       @policies = Policy.where(company_id: @company.id)
       @claims = Claim.where("policy_id = ?", @policies.each)

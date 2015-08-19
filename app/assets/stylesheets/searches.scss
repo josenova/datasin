@@ -15,7 +15,7 @@
   margin-top: 11%;
 }
 
-.searches #new_search {
+.searches_new #new_search {
   padding: 0;
   width: 402px;
   margin: 0 auto;
@@ -23,7 +23,7 @@
   position: relative;
 }
 
-.searches #new_search input {
+.searches_new #new_search input {
   border:1px solid $light-blue-shade;
   width:400px;
   height:40px;
@@ -33,7 +33,7 @@
   padding: 10px;
 }
 
-.searches #new_search input[type="submit"] {
+.searches_new #new_search input[type="submit"] {
 	width:200px;
 	text-transform:uppercase;
 	background-color:$orange;

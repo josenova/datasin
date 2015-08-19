@@ -11,7 +11,7 @@
   %body
     #all
       = render "layouts/header"
-      #content{:class => "#{params[:controller]}"}
+      #content{:class => "#{params[:controller] + "_" + params[:action]}"}
         - if flash[:notice] 
           #notice= flash[:notice]
         - if flash[:alert] 
@@ -19,4 +19,5 @@
         - if flash[:error] 
           #error= flash[:error] 
         = yield
+        
       

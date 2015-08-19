@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :trackable, :validatable, :registerable
          
 	belongs_to :insurance
+	
+	has_paper_trail
 end

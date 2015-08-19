@@ -1,5 +1,10 @@
 = render 'searches/sidebar'
 
+#Loader
+%script{:type => "text/javascript"}
+  $("#Loader").fakeLoader({timeToHide:4000, zIndex:"19", spinner:"spinner2", bgColor:"#2C3E50"});
+        
+        
 #results
 
   - if @client
@@ -9,7 +14,7 @@
         - if @client.identification
           %h4 <span>Cédula</span> #{@client.identification}
         - if @client.gender
-          %h4 <span>Sexo</span> #{@client.gender}
+          %h4 <span>Sexo</span> #{get_gender @client.gender}
         - if @client.occupation
           %h4 <span>Ocupación</span> #{@client.occupation}
         - if @client.sector
@@ -30,7 +35,7 @@
           %tr{:class => cycle('odd', 'even')}
             %td= p.policy
             %td= p.insurance.company
-            %td= p.coverage
+            %td= get_coverage p.coverage
             %td= p.start.strftime("%d/%m/%Y")
             %td= p.end.strftime("%d/%m/%Y")
       - else
@@ -71,7 +76,8 @@
     - else
       %ul
         %li.none No hay historial.
-          
+
+  
 
         
 
