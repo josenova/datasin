@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
 	belongs_to :insurance
 	
 	has_paper_trail
+	
 end

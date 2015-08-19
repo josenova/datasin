@@ -80,7 +80,7 @@ insurances = Insurance.create([
 ])
 
 user = User.create([
-{ email: 'novajose@gmail.com', password: '12345678', password_confirmation: '12345678', name: 'José Raúl', surname: 'Nova Rodriguez', insurance: Insurance.find_by(company: 'Seguros Constitución')}
+{ email: 'novajose@gmail.com', password: '12345678', password_confirmation: '12345678', name: 'José Raúl', surname: 'Nova Rodriguez', insurance: Insurance.find_by(company: 'Seguros Constitución')},
 { email: 'fernan.baez@gmail.com', password: '12345678', password_confirmation: '12345678', name: 'Fernando A.', surname: 'Báez Tavárez', insurance: Insurance.find_by(company: 'Seguros BanReservas')}
 ])
 
