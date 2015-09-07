@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825202126) do
+ActiveRecord::Schema.define(version: 20150907161204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,14 @@ ActiveRecord::Schema.define(version: 20150825202126) do
   add_index "policies", ["company_id"], name: "index_policies_on_company_id", using: :btree
   add_index "policies", ["insurance_id"], name: "index_policies_on_insurance_id", using: :btree
 
+  create_table "policies_vehicles", id: false, force: :cascade do |t|
+    t.integer "policy_id"
+    t.integer "vehicle_id"
+  end
+
+  add_index "policies_vehicles", ["policy_id"], name: "index_policies_vehicles_on_policy_id", using: :btree
+  add_index "policies_vehicles", ["vehicle_id"], name: "index_policies_vehicles_on_vehicle_id", using: :btree
+
   create_table "searches", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "client"
@@ -172,10 +180,8 @@ ActiveRecord::Schema.define(version: 20150825202126) do
     t.string   "plate"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.integer  "policy_id"
   end
 
-  add_index "vehicles", ["policy_id"], name: "index_vehicles_on_policy_id", using: :btree
   add_index "vehicles", ["vehicle_model_id"], name: "index_vehicles_on_vehicle_model_id", using: :btree
 
   create_table "versions", force: :cascade do |t|
@@ -202,6 +208,5 @@ ActiveRecord::Schema.define(version: 20150825202126) do
   add_foreign_key "sectors", "cities"
   add_foreign_key "users", "insurances"
   add_foreign_key "vehicle_models", "vehicle_brands"
-  add_foreign_key "vehicles", "policies"
   add_foreign_key "vehicles", "vehicle_models"
 end

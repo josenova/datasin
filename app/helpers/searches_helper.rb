@@ -13,7 +13,7 @@ module SearchesHelper
   	if policy.client_id 	
   	  details = [[policy.client.name,policy.client.surname].join(' '), policy.client.identification.insert(3, '-').insert(11, '-')]  
   	elsif policy.company_id
-  	  details = [policy.company.name, policy.company.rnc.insert(3, '-').insert(6, '-')]  
+  	  details = [policy.company.name, policy.company.rnc.to_s.insert(3, '-').insert(7, '-')]  
   	end
   	content_tag :ul do
   	    details.collect {|item| concat(content_tag(:li, item))}

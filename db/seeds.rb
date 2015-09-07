@@ -93,10 +93,13 @@ policies = Policy.create([
 ])
 
 vehicles = Vehicle.create([
-{ vehicle_model: VehicleModel.find_by(name: 'Tucson'), year: 2010, vin: '1HGBH41JXMN109186', plate: 'M543001', policy: Policy.find_by(policy: '225010803099')},
-{ vehicle_model: VehicleModel.find_by(name: 'Tucson'), year: 2010, vin: '1HGBH41JXMN109186', plate: 'M543001', policy: Policy.find_by(policy: '328062530988')},
-{ vehicle_model: VehicleModel.find_by(name: 'Land Cruiser'), year: 2015, vin: '3HBFD60JXAB212016', plate: 'M231886', policy: Policy.find_by(policy: '417251880765')}
+{ vehicle_model: VehicleModel.find_by(name: 'Tucson'), year: 2010, vin: '1HGBH41JXMN109186', plate: 'M543001'},
+{ vehicle_model: VehicleModel.find_by(name: 'Land Cruiser'), year: 2015, vin: '3HBFD60JXAB212016', plate: 'M231886'}
 ])
+
+Vehicle.find_by(vin: '1HGBH41JXMN109186').policies << Policy.find_by(policy: '328062530988')
+Vehicle.find_by(vin: '1HGBH41JXMN109186').policies << Policy.find_by(policy: '225010803099')
+
 
 claims = Claim.create([
 { date:'09-10-2012', number: 'ABCD1234657', amount: 13532.01, policy: Policy.find_by(policy: '225010803099'), vehicle: Vehicle.find_by(vin: '1HGBH41JXMN109186'), claim_type: ClaimType.find_by(name: 'Colisión'), claim_status: ClaimStatus.find_by(status: 'Aprobada')},

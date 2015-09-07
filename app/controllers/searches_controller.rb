@@ -16,10 +16,7 @@ class SearchesController < ApplicationController
     end
     
     if @vehicle
-      @vehicle_policies ||= Array.new
-      @vehicle.each do |v|
-        @vehicle_policies.push(Policy.where(id: v.policy_id))
-      end
+      @vehicle_policies = @vehicle.policies
     end   
     
   end
@@ -61,7 +58,7 @@ class SearchesController < ApplicationController
 			unless vehicle_query.blank?
 			
 				if vehicle_query.length == 17      
-					@vehicle = Vehicle.where(vin: vehicle_query)
+					@vehicle = Vehicle.find_by(vin: vehicle_query)
 				elsif vehicle_query.length < 8
 					@vehicle = Vehicle.find_by(plate: vehicle_query) 
 				end  

@@ -92,7 +92,7 @@
     
       - if @vehicle_policies
         .breaker= @vehicle_policies.count.to_s + " pólizas"
-        - @vehicle_policies.order("created_at desc").each do |p|
+        - @vehicle_policies.order("start desc").each do |p|
           .block
             .block_header
               .policy_number= 'Póliza #' + p.policy
