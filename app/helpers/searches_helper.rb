@@ -8,6 +8,17 @@ module SearchesHelper
   end
   
   
+  def get_client_details(policy)
+  
+  	if policy.client_id 	
+  	  details = [[policy.client.name,policy.client.surname].join(' '), policy.client.identification.insert(3, '-').insert(11, '-')]  
+  	elsif policy.company_id
+  	  details = [policy.company.name, policy.company.rnc.insert(3, '-').insert(6, '-')]  
+  	end
+  	content_tag :ul do
+  	    details.collect {|item| concat(content_tag(:li, item))}
+  	  end
+  end
   
   
 end

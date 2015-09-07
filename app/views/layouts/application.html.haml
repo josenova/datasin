@@ -8,16 +8,16 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
     = favicon_link_tag 'favicon.ico'
-  %body
-    #all
-      = render "layouts/header"
-      #content{:class => "#{params[:controller] + "_" + params[:action]}"}
+  %body{:signed_in => "#{user_signed_in?}"}
+    #all{:action => "#{params[:controller] + "_" + params[:action]}"}
+      = render "layouts/header" if user_signed_in?
+      #content
         - if flash[:notice] 
-          #notice= flash[:notice]
+          #notice
+            %span= flash[:notice]
         - if flash[:alert] 
-          #alert= flash[:alert] 
-        - if flash[:error] 
-          #error= flash[:error] 
+          #alert
+            %span= flash[:alert] 
         = yield
         
       

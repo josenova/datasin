@@ -4,4 +4,8 @@ class Vehicle < ActiveRecord::Base
   has_many :claims
   
   has_paper_trail
+  
+  #validates :vin, presence: true, uniqueness: true
+  #validates :plate, presence: true, uniqueness: true
+  
 end

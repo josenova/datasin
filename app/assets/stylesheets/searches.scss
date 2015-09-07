@@ -15,7 +15,7 @@
   margin-top: 11%;
 }
 
-.searches_new #new_search {
+#new_search {
   padding: 0;
   width: 402px;
   margin: 0 auto;
@@ -23,7 +23,7 @@
   position: relative;
 }
 
-.searches_new #new_search input {
+#new_search input {
   border:1px solid $light-blue-shade;
   width:400px;
   height:40px;
@@ -33,7 +33,7 @@
   padding: 10px;
 }
 
-.searches_new #new_search input[type="submit"] {
+#new_search input[type="submit"] {
 	width:200px;
 	text-transform:uppercase;
 	background-color:$orange;
@@ -50,7 +50,7 @@
 }
 
 
-.summary {
+.datalist {
   float: left;
   width: 33.3%;
   height: 90px;
@@ -71,50 +71,56 @@
 }
 
 #results {
-  padding: 3.44%;
+  padding: 2.12%;
   overflow:hidden;
   margin: 0 0 0 14.5%;
 }
 
-#summary {
- margin-bottom:2.12%;
-   display: inline-block;
+/******************************** MAIN BLOCK ******************************/
+
+.main_block {
+  margin-bottom:2.12%;
+  display: inline-block;
   width: 100%;
+  background-color:rgba(255,255,255,0.95);
+  padding:2.12%;
+  box-shadow:1px 1px rgba(0,0,0,0.2);
+  position:relative;
+   
 }
 
-
-#summary h2 {
-  color:$white;
+/*
+.main_block h2 {
+  color:$dark-blue;
   font-size:28px;
-  text-shadow:1px 1px 0px rgba(0,0,0,0.4);
 }
+*/
 
-#info {
+.info {
   float:left;
 }
 
 
-#info h4 {
+.info h4 {
   font-family: 'Bebas Neue';
   font-size: 20px;
-  color:$white;
+  color:$dark-blue;
   float:left;
   position: relative;
   padding-right: 70px;
   margin: 22px 0 0;
-  text-shadow:1px 1px rgba(0,0,0,0.4);
 }
 
 
-#info h4 span {
+.info h4 span {
   position: absolute;
   top: -14px;
   font-size: 16px;
-  color:$dark-blue;
+  color:$light-blue-shade;
   text-shadow:none;
 }
 
-#print {
+.print {
   color:$white;
   background-color:$orange;
   text-decoration:none;
@@ -127,7 +133,7 @@
   top:16px;
 }
 
-#print::before {
+.print::before {
   content: '<';
   font-family: entypo;
   height: 30px;
@@ -140,7 +146,7 @@
   left: 14px;
 }
 
-h5 span {
+.bubble {
   color:#fff;
   background:$orange;
   border-radius: 18px;
@@ -151,7 +157,7 @@ h5 span {
   font-size: 12px;
   text-align: center;
   top: -2px;
-  margin-left: 2px;
+  margin-right: 2px;
   position: relative;
 }
 
@@ -159,6 +165,93 @@ li {
   font-size:14px;
   color:#fff;
 }
+
+
+/****************************** NORMAL BLOCKS **********************/
+
+.breaker {
+    background-color: #E74C3C;
+    width: 200px;
+    border-radius: 3px;
+    text-align: center;
+    margin: 0 auto 2.12%;
+    color: #fff;
+    font-size: 14px;
+    text-shadow: 1px 1px rgba(0,0,0,0.2);
+    padding: 2px 0;
+    border: 1px solid #fff;
+    
+    }
+
+.block {
+  margin-bottom:2.12%;
+  display: inline-block;
+  width: 100%;
+  background-color:rgba(255,255,255,0.95);
+  box-shadow:1px 1px rgba(0,0,0,0.2);
+  position:relative;
+}
+
+.block_header {
+    background: #2C3E50;
+    color: #fff;
+    font-size: 16px;
+    overflow: hidden;
+    line-height: 25px;
+    font-family: "Bebas Neue", sans-serif;
+    text-shadow: 1px 1px rgba(0,0,0,0.2);
+}
+
+
+.block_subheader {
+    background: rgba(0, 0, 0, 0.05);
+    overflow:hidden;
+    
+}
+
+.block_subheader ul li {
+   float: left;
+    color: rgba(0, 0, 0, 0.4);
+    padding: 3px 10px;
+    font-size: 13px;
+}
+
+.policy_number {
+    float: left;
+    padding: 4px 9px 0 9px;
+}
+
+.insurance_name {
+    float: left;
+    padding: 4px 9px 0 9px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.coverage_type {
+    float: left;
+    padding: 4px 9px 0 9px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    }
+    
+.claims_count {
+  float:left;
+  padding: 4px 9px 0 9px;
+  border-left: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.start_date {
+    float: right;
+    padding: 4px 9px 0 9px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.end_date {
+  float:right;
+  padding: 4px 9px 0 9px;
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+
 
 /****************************** SIDE MENU **********************/
 

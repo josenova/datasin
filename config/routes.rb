@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :searches, only: [:index, :show, :new, :create], :path => "search"
+  resources :searches, only: [:index, :new, :create], :path => "search"
   resources :claims, only: [:show]
   devise_for :users
 

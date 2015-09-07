@@ -7,77 +7,121 @@
         
 #results
 
-  - if @client
-    %div{:id => "summary"}
-      #info
-        %h2= @client.name + ' ' + @client.surname
-        - if @client.identification
-          %h4 <span>Cédula</span> #{@client.identification}
-        - if @client.gender
-          %h4 <span>Sexo</span> #{get_gender @client.gender}
-        - if @client.occupation
-          %h4 <span>Ocupación</span> #{@client.occupation}
-        - if @client.sector
-          %h4 <span>Sector</span> #{@client.sector.name}
-      = link_to 'Imprimir', '#', :id => "print"
+  #client_report.page{:unactive => "#{@client.nil?}"}
+    - if @client
+    
+      .main_block
+        .info
+          %h2= [@client.name, @client.surname].join(' ')
+          - if @client.identification
+            %h4 <span>Cédula</span> #{@client.identification.insert(3, '-').insert(11, '-')}
+          - if @client.gender
+            %h4 <span>Sexo</span> #{get_gender @client.gender}
+          - if @client.occupation
+            %h4 <span>Ocupación</span> #{@client.occupation}
+          - if @client.sector
+            %h4 <span>Sector</span> #{@client.sector.name}
+        = link_to 'Imprimir', '#', :class => "print"
         
-    
-    %h5 Pólizas <span>#{@policies.count}</span> 
-    %table{:cellpading => '0', :cellspacing => 0}
-      %tr{:class => "tabletop"}
-        %th No. Póliza
-        %th Compañía
-        %th Cobertura
-        %th Fecha Inicio
-        %th Fecha Fin
-      - if @policies
-        - @policies.order("created_at desc").each do |p|
-          %tr{:class => cycle('odd', 'even')}
-            %td= p.policy
-            %td= p.insurance.company
-            %td= get_coverage p.coverage
-            %td= p.start.strftime("%d/%m/%Y")
-            %td= p.end.strftime("%d/%m/%Y")
-      - else
-        %tr
-          %td.none No hay pólizas.
- 
-    %h5 Reclamaciones <span>#{@claims.count}</span> 
-    %table{:cellpading => '0', :cellspacing => 0}
-      %tr
-        %th No. Reclamación
-        %th Vehículo
-        %th Compañía
-        %th No. Póliza
-        %th Fecha
-        %th Tipo
-        %th Estado
-      - if @claims
-        - @claims.order("created_at desc").each do |c|
-          %tr{:class => cycle('odd', 'even')}
-            %td= link_to c.number, c
-            %td= c.vehicle.vin
-            %td= c.policy.insurance.company
-            %td= c.policy.policy
-            %td= c.date.strftime("%d/%m/%Y")
-            %td= c.claim_type.name
-            %td= c.claim_status.status
-      - else
-        %tr
-          %td.none No hay reclamaciones.
+         
+      - if @client_policies
+        .breaker= @client_policies.count.to_s + " pólizas"
+        - @client_policies.order("created_at desc").each do |p|
+          .block
+            .block_header
+              .policy_number= 'Póliza #' + p.policy
+              .insurance_name= p.insurance.company
+              .coverage_type= get_coverage p.coverage
+              .claims_count
+                .bubble= p.claims.count.to_s 
+                %span  reclamaciones
+              .end_date= p.end.strftime("%d/%m/%Y")            
+              .start_date= p.start.strftime("%d/%m/%Y")
+            %table{:cellpading => '0', :cellspacing => 0}
+              %tr
+                %th No. Reclamación
+                %th Vehículo
+                %th Placa
+                %th Chasis
+                %th Fecha
+                %th Tipo
+                %th Estado  
+              - p.claims.order("created_at desc").each do |c|
+                %tr{:class => cycle('odd', 'even')}
+                  %td= c.number
+                  %td= [c.vehicle.vehicle_model.vehicle_brand.name,c.vehicle.vehicle_model.name,c.vehicle.year.to_s].join(' ')
+                  %td= c.vehicle.plate
+                  %td= c.vehicle.vin
+                  %td= c.date.strftime("%d/%m/%Y")
+                  %td= c.claim_type.name
+                  %td= c.claim_status.status
 		
-    %h5 Multas
-    = raw @tickets if @tickets
+      - if @tickets
+        %h5 Multas
+        = raw @tickets
     
-    - if @history
-      - @history.order("created_at desc").each do |h|
+      - if @history
+        - @history.each do |h|
+          %ul
+            %li Consultado por #{h.user.insurance.company} el #{h.date.strftime("%d/%m/%Y")}
+      - else
         %ul
-          %li Consultado por #{h.user.insurance.company} el #{h.created_at.strftime("%d/%m/%Y")}
-    - else
-      %ul
-        %li.none No hay historial.
+          %li.none No hay historial.
 
-  
+    - else
+      %p No existe registro del cliente.
+
+
+
+
+
+      
+  #vehicle_report.page{:unactive => "#{@vehicle.nil?}"}  
+    - if @vehicle
+    
+      .main_block
+        .info
+          %h2= [@vehicle.vehicle_model.vehicle_brand.name, @vehicle.vehicle_model.name, @vehicle.year.to_s].join(' ')
+          - if @vehicle.plate
+            %h4 <span>Placa</span> #{@vehicle.plate}
+          - if @vehicle.vin
+            %h4 <span>VIN</span> #{@vehicle.vin}
+
+        = link_to 'Imprimir', '#', :class => "print"
+    
+    
+      - if @vehicle_policies
+        .breaker= @vehicle_policies.count.to_s + " pólizas"
+        - @vehicle_policies.order("created_at desc").each do |p|
+          .block
+            .block_header
+              .policy_number= 'Póliza #' + p.policy
+              .insurance_name= p.insurance.company
+              .coverage_type= get_coverage p.coverage
+              .claims_count
+                .bubble= p.claims.count.to_s 
+                %span  reclamaciones
+              .end_date= p.end.strftime("%d/%m/%Y")            
+              .start_date= p.start.strftime("%d/%m/%Y")
+            .block_subheader= get_client_details(p)
+            %table{:cellpading => '0', :cellspacing => 0}
+              %tr
+                %th No. Reclamación
+                %th Vehículo
+                %th Placa
+                %th Chasis
+                %th Fecha
+                %th Tipo
+                %th Estado  
+              - p.claims.order("created_at desc").each do |c|
+                %tr{:class => cycle('odd', 'even')}
+                  %td= c.number
+                  %td= [c.vehicle.vehicle_model.vehicle_brand.name,c.vehicle.vehicle_model.name,c.vehicle.year.to_s].join(' ')
+                  %td= c.vehicle.plate
+                  %td= c.vehicle.vin
+                  %td= c.date.strftime("%d/%m/%Y")
+                  %td= c.claim_type.name
+                  %td= c.claim_status.status
 
         
 

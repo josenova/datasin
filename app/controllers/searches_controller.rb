@@ -1,42 +1,39 @@
 class SearchesController < ApplicationController
   before_action :authenticate_user!
+  before_action :create, only: [:index]
   before_action :set_target, only: [:index]
-  #before_action :create, only: [:index]
 
 
-  # Results Index 
+
+  # Results 
   def index
     if @client
-      @policies = Policy.where(client_id: @client.id)
-      @claims = Claim.where("policy_id = ?", @policies.each)
-      @history = Search.where("client = ?", @client.identification)
-      lookup_tickets(@client.identification)
+      @client_policies = Policy.where(client_id: @client.id)
+      @history = Search.joins(:user).where("searches.client = ?", @client.identification).group("users.insurance_id, searches.date, searches.id")
+      #lookup_tickets(@client.identification)
     elsif @company
-      @policies = Policy.where(company_id: @company.id)
-      @claims = Claim.where("policy_id = ?", @policies.each)
+      @client_policies = Policy.where(company_id: @company.id)
     end
-      #create more policies to comprobar ascending desc order    
+    
+    if @vehicle
+      @vehicle_policies ||= Array.new
+      @vehicle.each do |v|
+        @vehicle_policies.push(Policy.where(id: v.policy_id))
+      end
+    end   
     
   end
 
   # New Search Root
   def new
-    @search = Search.new
   end
   
   # Save User Search
-  def create
-    
+  def create    
     @search = Search.new(search_params)
     @search.user_id = current_user.id
-
-    respond_to do |format|
-      if @search.save
-        format.html { redirect_to searches_url(:client => @search.client, :vehicle => @search.vehicle) }
-      else
-        format.html { render :new } #Create error page
-      end
-    end
+    @search.date = Date.today
+		@search.save
   end
 
 
@@ -44,8 +41,13 @@ class SearchesController < ApplicationController
   
 		# Set Client and Vehicle variables
 		def set_target
+		  
 			client_query = params[:client]
 			vehicle_query = params[:vehicle]
+			
+			unless client_query.blank?
+			
+			  client_query = client_query.strip.gsub(/[^0-9]/, '') 
 			
 				if client_query.length == 11
 					@client = Client.find_by(identification: client_query)
@@ -53,11 +55,19 @@ class SearchesController < ApplicationController
 					@company = Company.find_by(rnc: client_query)
 				end
 			
+			end
+			
+			
+			unless vehicle_query.blank?
+			
 				if vehicle_query.length == 17      
-					@vehicle = Vehicle.find_by(vin: vehicle_query)
+					@vehicle = Vehicle.where(vin: vehicle_query)
 				elsif vehicle_query.length < 8
 					@vehicle = Vehicle.find_by(plate: vehicle_query) 
 				end  
+			
+			end
+			
 		end
 		
 		#Look for tickets in AMET
@@ -94,7 +104,7 @@ class SearchesController < ApplicationController
   
     # Never trust parameters from the scary internet, only allow the white list through.
     def search_params
-      params.require(:search).permit(:client, :vehicle)
+      params.permit(:client, :vehicle)
     end
     
 
