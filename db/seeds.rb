@@ -22,7 +22,8 @@ sectors = Sector.create([
 { name: 'Arroyo Hondo', city: City.find_by(name: 'Distrito Nacional')},
 { name: 'El Millón', city: City.find_by(name: 'Distrito Nacional')},
 { name: 'Los Cacicazgos', city: City.find_by(name: 'Distrito Nacional')},
-{ name: 'Renacimiento', city: City.find_by(name: 'Distrito Nacional')}
+{ name: 'Renacimiento', city: City.find_by(name: 'Distrito Nacional')},
+{ name: 'Gazcue', city: City.find_by(name: 'Distrito Nacional')}
 ])
 
 brands = VehicleBrand.create([
@@ -65,20 +66,23 @@ claim_types = ClaimType.create([
 ])
 
 companies = Company.create([
-{ name: 'Tricom', rnc: 101382001, address: 'Av. L De Vega 95', sector: Sector.find_by(name: 'Naco') },
-{ name: 'Intras', rnc: 212868012, address: 'Gustavo Mejía Ricart #76, suite 904', sector: Sector.find_by(name: 'Piantini') },
-{ name: 'Orange Dominicana', rnc: 168980132, address: 'Romulo Betancourt #32', sector: Sector.find_by(name: 'Bella Vista') }
+{ name: 'Tricom', rnc: '101382001', address: 'Av. L De Vega 95', sector: Sector.find_by(name: 'Naco') },
+{ name: 'Intras', rnc: '212868012', address: 'Gustavo Mejía Ricart #76, suite 904', sector: Sector.find_by(name: 'Piantini') },
+{ name: 'Orange Dominicana', rnc: '168980132', address: 'Romulo Betancourt #32', sector: Sector.find_by(name: 'Bella Vista') }
 ])
 
 clients = Client.create([
 { name: 'José Raúl', surname: 'Nova Rodríguez', identification: '00118530690', gender: true, birthdate: '07-09-1990', address: 'Rafael Hernandez #16', sector: Sector.find_by(name: 'Naco') },
-{ name: 'Fernando', surname: 'Báez Tavárez', identification: '00117999383', gender: true, birthdate: '13-01-1988', address: 'Av. Enriquillo', sector: Sector.find_by(name: 'Renacimiento') }
+{ name: 'Fernando Arturo', surname: 'Báez Tavárez', identification: '00117999383', gender: true, birthdate: '13-01-1988', address: 'Av. Enriquillo', sector: Sector.find_by(name: 'Renacimiento') },
+{ name: 'Lucia Valeria', surname: 'Guillamón Luna', identification: '00374839360', gender: false, birthdate: '31-01-1989', address: 'Av. Duarte', sector: Sector.find_by(name: 'Gazcue') }
+
 ])
 
 insurances = Insurance.create([
 { company: 'Seguros Constitución' },
 { company: 'Seguros Universal' },
-{ company: 'Seguros BanReservas' }
+{ company: 'Seguros BanReservas' },
+{ company: 'Seguros La Colonial' }
 ])
 
 user = User.create([
@@ -87,22 +91,27 @@ user = User.create([
 ])
 
 policies = Policy.create([
-{ policy: '225010803099', coverage: true, start: '28-05-2012', end: '28-05-2013', insurance: Insurance.find_by(company: 'Seguros Constitución'), client: Client.find_by(identification: '00118530690')},
+{ policy: 'AUTC-2250108030', coverage: true, start: '28-05-2012', end: '28-05-2013', insurance: Insurance.find_by(company: 'Seguros Constitución'), client: Client.find_by(identification: '00118530690')},
 { policy: '328062530988', coverage: false, start: '03-06-2010', end: '03-06-2011', insurance: Insurance.find_by(company: 'Seguros Universal'), company: Company.find_by(name: 'Tricom')},
-{ policy: '417251880765', coverage: true, start: '12-08-2014', end: '12-08-2015', insurance: Insurance.find_by(company: 'Seguros BanReservas'), client: Client.find_by(identification: '00118530690')}
+{ policy: '417251880765', coverage: true, start: '12-08-2014', end: '12-08-2015', insurance: Insurance.find_by(company: 'Seguros BanReservas'), client: Client.find_by(identification: '00118530690')},
+{ policy: '1-2-500-129304', coverage: false, start: '10-06-2014', end: '10-06-2015', insurance: Insurance.find_by(company: 'Seguros La Colonial'), client: Client.find_by(identification: '00374839360')},
+{ policy: 'AUTC-7502026771', coverage: true, start: '10-06-2009', end: '10-06-2011', insurance: Insurance.find_by(company: 'Seguros Constitución'), client: Client.find_by(identification: '00374839360')}
 ])
 
 vehicles = Vehicle.create([
 { vehicle_model: VehicleModel.find_by(name: 'Tucson'), year: 2010, vin: '1HGBH41JXMN109186', plate: 'M543001'},
-{ vehicle_model: VehicleModel.find_by(name: 'Land Cruiser'), year: 2015, vin: '3HBFD60JXAB212016', plate: 'M231886'}
+{ vehicle_model: VehicleModel.find_by(name: 'Land Cruiser'), year: 2015, vin: '3HBFD60JXAB212016', plate: 'M231886'},
+{ vehicle_model: VehicleModel.find_by(name: 'Corolla'), year: 2008, vin: '4DFGF43XBSE837483', plate: 'A001490'}
 ])
 
 Vehicle.find_by(vin: '1HGBH41JXMN109186').policies << Policy.find_by(policy: '328062530988')
-Vehicle.find_by(vin: '1HGBH41JXMN109186').policies << Policy.find_by(policy: '225010803099')
+Vehicle.find_by(vin: '1HGBH41JXMN109186').policies << Policy.find_by(policy: 'AUTC-2250108030')
+Vehicle.find_by(vin: '4DFGF43XBSE837483').policies << Policy.find_by(policy: 'AUTC-7502026771')
 
 
 claims = Claim.create([
-{ date:'09-10-2012', number: 'ABCD1234657', amount: 13532.01, policy: Policy.find_by(policy: '225010803099'), vehicle: Vehicle.find_by(vin: '1HGBH41JXMN109186'), claim_type: ClaimType.find_by(name: 'Colisión'), claim_status: ClaimStatus.find_by(status: 'Aprobada')},
-{ date:'22-03-2013', number: 'WXYZ5463721', amount: 56820.00, policy: Policy.find_by(policy: '225010803099'), vehicle: Vehicle.find_by(vin: '1HGBH41JXMN109186'), claim_type: ClaimType.find_by(name: 'Colisión'), claim_status: ClaimStatus.find_by(status: 'Denegada')},
-{ date:'02-12-2014', number: 'EFGH4352431', amount: 30230.00, policy: Policy.find_by(policy: '417251880765'), vehicle: Vehicle.find_by(vin: '3HBFD60JXAB212016'), claim_type: ClaimType.find_by(name: 'Colisión'), claim_status: ClaimStatus.find_by(status: 'En Proceso')}
+{ date:'09-10-2012', number: 'ABCD1234657', amount: 13532.01, policy: Policy.find_by(policy: 'AUTC-2250108030'), vehicle: Vehicle.find_by(vin: '1HGBH41JXMN109186'), claim_type: ClaimType.find_by(name: 'Colisión'), claim_status: ClaimStatus.find_by(status: 'Aprobada')},
+{ date:'22-03-2013', number: 'WXYZ5463721', amount: 56820.00, policy: Policy.find_by(policy: 'AUTC-2250108030'), vehicle: Vehicle.find_by(vin: '1HGBH41JXMN109186'), claim_type: ClaimType.find_by(name: 'Colisión'), claim_status: ClaimStatus.find_by(status: 'Denegada')},
+{ date:'02-12-2014', number: 'EFGH4352431', amount: 30230.00, policy: Policy.find_by(policy: '417251880765'), vehicle: Vehicle.find_by(vin: '3HBFD60JXAB212016'), claim_type: ClaimType.find_by(name: 'Colisión'), claim_status: ClaimStatus.find_by(status: 'En Proceso')},
+{ date:'20-06-2010', number: 'TRPX3748392', amount: 7502.00, policy: Policy.find_by(policy: 'AUTC-7502026771'), vehicle: Vehicle.find_by(vin: '4DFGF43XBSE837483'), claim_type: ClaimType.find_by(name: 'Daños'), claim_status: ClaimStatus.find_by(status: 'Aprobada')}
 ])

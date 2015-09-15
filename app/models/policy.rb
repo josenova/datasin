@@ -4,6 +4,6 @@ class Policy < ActiveRecord::Base
   belongs_to :company
   has_many :claims
   has_and_belongs_to_many :vehicles
-  
+
   has_paper_trail
 end

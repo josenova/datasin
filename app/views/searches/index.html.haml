@@ -22,14 +22,14 @@
           - if @client.sector
             %h4 <span>Sector</span> #{@client.sector.name}
         = link_to 'Imprimir', '#', :class => "print"
+     
         
-         
-      - if @client_policies
-        .breaker= @client_policies.count.to_s + " pólizas"
-        - @client_policies.order("created_at desc").each do |p|
+      .breaker= @policies.count.to_s + " Pólizas"   
+      - unless @policies.empty? 
+        - @policies.order("start desc").each do |p|
           .block
             .block_header
-              .policy_number= 'Póliza #' + p.policy
+              .policy_number= 'Póliza # ' + p.policy
               .insurance_name= p.insurance.company
               .coverage_type= get_coverage p.coverage
               .claims_count
@@ -38,30 +38,33 @@
               .end_date= p.end.strftime("%d/%m/%Y")            
               .start_date= p.start.strftime("%d/%m/%Y")
             %table{:cellpading => '0', :cellspacing => 0}
-              %tr
-                %th No. Reclamación
-                %th Vehículo
-                %th Placa
-                %th Chasis
-                %th Fecha
-                %th Tipo
-                %th Estado  
-              - p.claims.order("created_at desc").each do |c|
-                %tr{:class => cycle('odd', 'even')}
-                  %td= c.number
-                  %td= [c.vehicle.vehicle_model.vehicle_brand.name,c.vehicle.vehicle_model.name,c.vehicle.year.to_s].join(' ')
-                  %td= c.vehicle.plate
-                  %td= c.vehicle.vin
-                  %td= c.date.strftime("%d/%m/%Y")
-                  %td= c.claim_type.name
-                  %td= c.claim_status.status
+              - unless p.claims.empty? 
+                %tr
+                  %th No. Reclamación
+                  %th Vehículo
+                  %th Placa
+                  %th Chasis
+                  %th Fecha
+                  %th Tipo
+                  %th Estado  
+                - p.claims.order("created_at desc").each do |c|
+                  %tr{:class => cycle('odd', 'even')}
+                    %td= c.number
+                    %td= [c.vehicle.vehicle_model.vehicle_brand.name,c.vehicle.vehicle_model.name,c.vehicle.year.to_s].join(' ')
+                    %td= c.vehicle.plate
+                    %td= c.vehicle.vin
+                    %td= c.date.strftime("%d/%m/%Y")
+                    %td= c.claim_type.name
+                    %td= c.claim_status.status
+              - else
+                %td.none_found No se encontraron reclamaciones.
 		
       - if @tickets
-        %h5 Multas
+        .breaker Multas
         = raw @tickets
     
-      - if @history
-        - @history.each do |h|
+      - if @client_history
+        - @client_history.each do |h|
           %ul
             %li Consultado por #{h.user.insurance.company} el #{h.date.strftime("%d/%m/%Y")}
       - else
@@ -70,6 +73,22 @@
 
     - else
       %p No existe registro del cliente.
+
+
+
+
+
+
+  #company_report.page{:unactive => "#{@company.nil?}"}  
+    - if @company
+
+      .main_block
+        .info
+          %h2= @company.name
+          - if @company.rnc
+            %h4 <span>RNC</span> #{@company.rnc.insert(3, '-').insert(7, '-')}
+        = link_to 'Imprimir', '#', :class => "print"
+
 
 
 
@@ -90,9 +109,9 @@
         = link_to 'Imprimir', '#', :class => "print"
     
     
-      - if @vehicle_policies
-        .breaker= @vehicle_policies.count.to_s + " pólizas"
-        - @vehicle_policies.order("start desc").each do |p|
+      .breaker= @vehicle.policies.count.to_s + " pólizas"
+      - unless @vehicle.policies.empty?    
+        - @vehicle.policies.order("start desc").each do |p|
           .block
             .block_header
               .policy_number= 'Póliza #' + p.policy

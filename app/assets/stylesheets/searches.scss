@@ -151,7 +151,7 @@
   background:$orange;
   border-radius: 18px;
   width: 16px;
-  line-height: 18px;
+  line-height: 16px;
   height: 16px;
   display: inline-block;
   font-size: 12px;
@@ -159,6 +159,8 @@
   top: -2px;
   margin-right: 2px;
   position: relative;
+  text-shadow:1px 1px rgba(0, 0, 0, 0.2);
+  font-family:$primary-font;
 }
 
 li {
@@ -252,6 +254,10 @@ li {
   border-left: 1px solid rgba(255,255,255,0.1);
 }
 
+.none_found {
+text-align:center;
+   font-size:13px;
+}
 
 /****************************** SIDE MENU **********************/
 
@@ -292,15 +298,68 @@ li {
   border-left: 2px solid $orange;
   
 }
-/*********************************** TABLA MULTAS *************************/
 
-#ContentPlaceHolder1_wucAmet1_gvAmet th {
-  width: inherit;
+#side_menu ul li {
+    font-size:12px;
+    padding-top:5px;
+    padding-bottom:5px;
 }
 
-#ContentPlaceHolder1_wucAmet1_gvAmet td {
-  text-align:right;
+#side_menu > ul > li {
+   padding-left:13px; 
+       margin-top: 7px;
+
+}
+
+#side_menu > ul > ul > li {
+  padding-left:13px;  
+   
+
+}
+
+#side_menu > ul > ul > ul > li {
+ padding-left:7px;
+    margin-left:19px;
+    border-left:1px solid rgba(255,255,255,0.15);
+}
+
+#side_menu > ul > ul > ul > ul > li {
+padding-left: 9px;
+    margin-left: 30px;
+    border-left: 1px solid rgba(255,255,255,0.2);
+}
+
+/*********************************** TABLA MULTAS *************************/
+
+#ctl00_ContentPlaceHolder1_GridViewMultas {
+  background-color:#F5FAFD;
+  display:block;
+  border-top:4px solid #2C3E50;
+}
+
+#ctl00_ContentPlaceHolder1_GridViewMultas td {
+  text-align:center;
   font-size:13px;
   padding:1px 10px;
   border-right:1px solid #ddd;
+}
+
+#ctl00_ContentPlaceHolder1_GridViewMultas tr th:nth-child(1) {
+width:100px;
+}
+
+#ctl00_ContentPlaceHolder1_GridViewMultas tr th:nth-child(2), #ctl00_ContentPlaceHolder1_GridViewMultas tr th:nth-child(3) {
+width:200px;
+}
+
+#ctl00_ContentPlaceHolder1_GridViewMultas tr:nth-child(odd) {
+    background-color: rgba(44, 62, 80, 0.08);
+}
+
+#ctl00_ContentPlaceHolder1_GridViewMultas tr:nth-child(even) {
+        background-color: rgba(44, 62, 80, 0.14);
+}
+
+#ctl00_ContentPlaceHolder1_GridViewMultas tr:last-child {
+    display:none;
 }

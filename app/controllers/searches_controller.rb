@@ -8,15 +8,15 @@ class SearchesController < ApplicationController
   # Results 
   def index
     if @client
-      @client_policies = Policy.where(client_id: @client.id)
-      @history = Search.joins(:user).where("searches.client = ?", @client.identification).group("users.insurance_id, searches.date, searches.id")
-      #lookup_tickets(@client.identification)
+      @policies = @client.policies
+      @client_history = Search.joins(:user).where("searches.client = ?", @client.identification).group("users.insurance_id, searches.date, searches.id")
+      lookup_tickets(@client.identification)
     elsif @company
-      @client_policies = Policy.where(company_id: @company.id)
+      @policies = @company.policies
     end
     
     if @vehicle
-      @vehicle_policies = @vehicle.policies
+
     end   
     
   end
@@ -70,13 +70,14 @@ class SearchesController < ApplicationController
 		#Look for tickets in AMET
 		def lookup_tickets(cedula)
 			agent = Mechanize.new
-			page = agent.get('http://amet.pgr.gob.do/Consulta/Default.aspx')
+			page = agent.get('http://consultas.amet.gob.do/')
 			form = agent.page.forms.first  
-			field = form.field_with(:id => "ContentPlaceHolder1_wucAmet1_tbCedula")
+			field = form.field_with(:id => "ctl00_ContentPlaceHolder1_Cedula")
 			field.value = cedula  
-			form.submit form.button_with(:name => "ctl00$ContentPlaceHolder1$wucAmet1$btBuscar")
-			tickets = agent.page.at('#ContentPlaceHolder1_wucAmet1_gvAmet')
-			parse_tickets(tickets)
+			form.submit form.button_with(:name => "ctl00$ContentPlaceHolder1$BotonValidar")
+			tickets = agent.page.at('#ctl00_ContentPlaceHolder1_GridViewMultas')
+			#parse_tickets(tickets)
+			@tickets = tickets
 	
 		end
 

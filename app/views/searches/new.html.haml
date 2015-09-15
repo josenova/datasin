@@ -1,7 +1,7 @@
 #main_logo
 
 = form_tag searches_path, :id => 'new_search', :method => 'get', :enforce_utf8 => false do
-  = text_field_tag :client, '', :placeholder => 'Identificación o RNC', :maxlength => 13, :pattern => ".{9,}", :title => "Mínimo 9 caracteres."
+  = text_field_tag :client, '', :placeholder => 'Identificación o RNC', :maxlength => 13, :pattern => ".{9,}", :title => "Mínimo 9 caracteres.", :autofocus => true
   = text_field_tag :vehicle, '', :placeholder => 'Placa o VIN', :maxlength => 17
   = submit_tag "Buscar", :name => nil
   

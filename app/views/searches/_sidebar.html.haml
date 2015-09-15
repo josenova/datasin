@@ -1,5 +1,25 @@
 #sidebar
   %ul#side_menu
-    = nav_link 'Cliente', '#', 'client_icon'
-    = nav_link 'Vehículo', '#', 'vehicle_icon'
+    - if @client
+      = nav_link 'Cliente', '#', 'client_icon'
+      %ul
+        %li= [@client.name, @client.surname].join(" ")
+        %ul
+          %li
+            .bubble= @policies.count.to_s
+            %span  Pólizas
+          - unless @policies.empty? 
+            - @policies.order("start desc").each do |p|
+              %ul
+                %li= p.policy
+                - unless p.claims.empty?
+                  %ul   
+                    - p.claims.order("created_at desc").each do |c|
+                      %li= c.number
+                  
+    - if @company
+      = nav_link 'Cliente', "#", 'client_icon'
+                     
+    - if @vehicle
+      = nav_link 'Vehículo', '#', 'vehicle_icon'
     
