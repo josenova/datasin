@@ -66,7 +66,7 @@
   width: 14.5%;
   height: 650px;
   position: fixed;
-  top: 43px;
+  top: 42px;
   left: 0px;
 }
 
@@ -271,6 +271,7 @@ text-align:center;
   text-decoration: none;
   text-transform: uppercase;
   border-bottom: 1px solid $light-blue;
+  border-top: 1px solid $light-blue;
   display: inline-block;
   width: 100%;
   padding: 9px 18px 9px 39px;
@@ -297,6 +298,10 @@ text-align:center;
 #side_menu .current a {
   border-left: 2px solid $orange;
   
+}
+
+#side_menu ul {
+margin-bottom:11px;
 }
 
 #side_menu ul li {
