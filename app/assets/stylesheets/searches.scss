@@ -398,3 +398,31 @@ width:200px;
     font-size: 14px;
     position: relative;
 }
+
+/*********************************** DATA TIPS *************************/
+
+
+
+[data-tip]:after {
+    display: block;
+    content: attr(data-tip);
+    position: absolute;
+    color: #bf5f61;
+    z-index: 9;
+    top: -10px;
+    right: -35px;
+    font-size: 14px;
+}
+
+[data-tip]:before {
+        display: block;
+    content: ' ';
+    position: absolute;
+    top: -8px;
+    right: -16px;
+    
+        border-bottom: 8px solid #bf5f61;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+

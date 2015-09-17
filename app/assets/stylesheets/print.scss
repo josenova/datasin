@@ -50,7 +50,7 @@
     
     }
     
-    .claims_count, #multas, header, #sidebar, .print, .sex, .job, .sector, #ctl00_ContentPlaceHolder1_GridViewMultas, .history {
+    .claims_count, #multas, header, #sidebar, .print, .sex, .birthdate, .job, .sector, #ctl00_ContentPlaceHolder1_GridViewMultas, .history {
         display:none !important;
     }
     
@@ -97,6 +97,7 @@
     
     .info {
     float:none !important;
+    width:100% !important;
     }
     
     .identification {

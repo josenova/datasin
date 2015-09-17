@@ -60,7 +60,19 @@ $( document ).ready(function() {
     setTimeout(function () {
         form.submit();
     }, 1500); // in milliseconds
-});
+		});
+		
+		
+
+		
+		function randomNumberFromRange(min,max) {
+    	return Math.floor(Math.random()*(max-min+1)+min);
+		}
+		
+		$(".sector span").attr("data-tip", randomNumberFromRange(4,9)+'%');
+		$(".birthdate span").attr("data-tip", randomNumberFromRange(4,11)+'%');
+		$(".job span").attr("data-tip", randomNumberFromRange(7,12) +'%');
+		$(".sex span").attr("data-tip", randomNumberFromRange(2,4)+'%');
     
     
  		

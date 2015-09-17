@@ -23,7 +23,6 @@
             %h4.job <span>Ocupación</span> #{@client.occupation}
           - if @client.sector
             %h4.sector <span>Sector</span> #{@client.sector.name}
-            = get_average(@client.sector)
         = link_to 'Imprimir', '#', :class => "print"
      
         
