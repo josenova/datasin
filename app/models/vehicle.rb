@@ -5,6 +5,10 @@ class Vehicle < ActiveRecord::Base
   
   has_paper_trail
   
+  before_validation do
+    self.plate = plate.upcase
+  end
+  
   #validates :vin, presence: true, uniqueness: true
   #validates :plate, presence: true, uniqueness: true
   

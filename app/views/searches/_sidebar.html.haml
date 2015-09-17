@@ -19,7 +19,35 @@
                   
     - if @company
       = nav_link 'Cliente', "#", 'client_icon'
+      %ul
+        %li= @company.name
+        %ul
+          %li
+            .bubble= @policies.count.to_s
+            %span  Pólizas
+          - unless @policies.empty? 
+            - @policies.order("start desc").each do |p|
+              %ul
+                %li= p.policy
+                - unless p.claims.empty?
+                  %ul   
+                    - p.claims.order("created_at desc").each do |c|
+                      %li= c.number
                      
     - if @vehicle
       = nav_link 'Vehículo', '#', 'vehicle_icon'
+      %ul
+        %li= [@vehicle.vehicle_model.vehicle_brand.name, @vehicle.vehicle_model.name, @vehicle.year.to_s].join(' ')
+        %ul
+          %li
+            .bubble= @vehicle.policies.count.to_s
+            %span  Pólizas
+          - unless @vehicle.policies.empty? 
+            - @vehicle.policies.order("start desc").each do |p|
+              %ul
+                %li= p.policy
+                - unless p.claims.empty?
+                  %ul   
+                    - p.claims.order("created_at desc").each do |c|
+                      %li= c.number
     

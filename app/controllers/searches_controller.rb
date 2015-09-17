@@ -13,10 +13,10 @@ class SearchesController < ApplicationController
       lookup_tickets(@client.identification)
     elsif @company
       @policies = @company.policies
-    end
+    elsif @vehicle
     
-    if @vehicle
-
+    else
+      render action: 'not_found'
     end   
     
   end
@@ -31,6 +31,10 @@ class SearchesController < ApplicationController
     @search.user_id = current_user.id
     @search.date = Date.today
 		@search.save
+  end
+  
+  def not_found
+    
   end
 
 
@@ -60,6 +64,7 @@ class SearchesController < ApplicationController
 				if vehicle_query.length == 17      
 					@vehicle = Vehicle.find_by(vin: vehicle_query)
 				elsif vehicle_query.length < 8
+				  vehicle_query.upcase!
 					@vehicle = Vehicle.find_by(plate: vehicle_query) 
 				end  
 			

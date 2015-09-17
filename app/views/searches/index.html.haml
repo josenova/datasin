@@ -1,9 +1,9 @@
-= render 'searches/sidebar'
 
 #Loader
 %script{:type => "text/javascript"}
   $("#Loader").fakeLoader({timeToHide:4000, zIndex:"19", spinner:"spinner2", bgColor:"#2C3E50"});
-        
+
+= render 'searches/sidebar'        
         
 #results
 
@@ -14,13 +14,13 @@
         .info
           %h2= [@client.name, @client.surname].join(' ')
           - if @client.identification
-            %h4 <span>Cédula</span> #{@client.identification.insert(3, '-').insert(11, '-')}
+            %h4.identification <span>Cédula</span> #{@client.identification.insert(3, '-').insert(11, '-')}
           - if @client.gender
-            %h4 <span>Sexo</span> #{get_gender @client.gender}
+            %h4.sex <span>Sexo</span> #{get_gender @client.gender}
           - if @client.occupation
-            %h4 <span>Ocupación</span> #{@client.occupation}
+            %h4.job <span>Ocupación</span> #{@client.occupation}
           - if @client.sector
-            %h4 <span>Sector</span> #{@client.sector.name}
+            %h4.sector <span>Sector</span> #{@client.sector.name}
         = link_to 'Imprimir', '#', :class => "print"
      
         
@@ -35,8 +35,8 @@
               .claims_count
                 .bubble= p.claims.count.to_s 
                 %span  reclamaciones
-              .end_date= p.end.strftime("%d/%m/%Y")            
-              .start_date= p.start.strftime("%d/%m/%Y")
+              .end_date= p.end.strftime("%d/%b/%Y")            
+              .start_date= p.start.strftime("%d/%b/%Y")
             %table{:cellpading => '0', :cellspacing => 0}
               - unless p.claims.empty? 
                 %tr
@@ -53,26 +53,24 @@
                     %td= [c.vehicle.vehicle_model.vehicle_brand.name,c.vehicle.vehicle_model.name,c.vehicle.year.to_s].join(' ')
                     %td= c.vehicle.plate
                     %td= c.vehicle.vin
-                    %td= c.date.strftime("%d/%m/%Y")
+                    %td= c.date.strftime("%d/%b/%Y")
                     %td= c.claim_type.name
                     %td= c.claim_status.status
               - else
                 %td.none_found No se encontraron reclamaciones.
 		
       - if @tickets
-        .breaker Multas
+        #multas.breaker Multas
         = raw @tickets
     
       - if @client_history
-        - @client_history.each do |h|
-          %ul
+        %ul.history
+          - @client_history.each do |h|
             %li Consultado por #{h.user.insurance.company} el #{h.date.strftime("%d/%m/%Y")}
       - else
         %ul
           %li.none No hay historial.
 
-    - else
-      %p No existe registro del cliente.
 
 
 
@@ -120,27 +118,34 @@
               .claims_count
                 .bubble= p.claims.count.to_s 
                 %span  reclamaciones
-              .end_date= p.end.strftime("%d/%m/%Y")            
-              .start_date= p.start.strftime("%d/%m/%Y")
+              .end_date= p.end.strftime("%d/%b/%Y")            
+              .start_date= p.start.strftime("%d/%b/%Y")
             .block_subheader= get_client_details(p)
             %table{:cellpading => '0', :cellspacing => 0}
-              %tr
-                %th No. Reclamación
-                %th Vehículo
-                %th Placa
-                %th Chasis
-                %th Fecha
-                %th Tipo
-                %th Estado  
-              - p.claims.order("created_at desc").each do |c|
-                %tr{:class => cycle('odd', 'even')}
-                  %td= c.number
-                  %td= [c.vehicle.vehicle_model.vehicle_brand.name,c.vehicle.vehicle_model.name,c.vehicle.year.to_s].join(' ')
-                  %td= c.vehicle.plate
-                  %td= c.vehicle.vin
-                  %td= c.date.strftime("%d/%m/%Y")
-                  %td= c.claim_type.name
-                  %td= c.claim_status.status
+              - unless p.claims.empty?
+                %tr
+                  %th No. Reclamación
+                  %th Vehículo
+                  %th Placa
+                  %th Chasis
+                  %th Fecha
+                  %th Tipo
+                  %th Estado  
+                - p.claims.order("created_at desc").each do |c|
+                  %tr{:class => cycle('odd', 'even')}
+                    %td= c.number
+                    %td= [c.vehicle.vehicle_model.vehicle_brand.name,c.vehicle.vehicle_model.name,c.vehicle.year.to_s].join(' ')
+                    %td= c.vehicle.plate
+                    %td= c.vehicle.vin
+                    %td= c.date.strftime("%d/%b/%Y")
+                    %td= c.claim_type.name
+                    %td= c.claim_status.status
+              - else
+                %td.none_found No se encontraron reclamaciones.
 
+#print_footer
+  %p *** Fin de página ***
+  
+#printed_by=  ['Impreso por',current_user.name, current_user.surname, 'de', current_user.insurance.company].join(' ')
         
 

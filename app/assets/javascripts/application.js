@@ -42,12 +42,14 @@ $( document ).ready(function() {
     
     $('#vehicle_icon a').click(function() {
       $('#client_report').hide();
+      $('#company_report').hide();
       $('#vehicle_report').show();
     });
     
     $('#client_icon a').click(function() {
       $('#vehicle_report').hide();
       $('#client_report').show();
+      $('#company_report').show();
     });
     
     

@@ -11,3 +11,17 @@
     #username
       #user_icon +
       = current_user.name
+      
+      
+#print_header
+  .left
+    #print_logo= image_tag("logo.png")
+    %p Teléfono: 809.555.0343
+    %p RNC: 101-00011-2
+  .right
+    %p Pág 1 de 1
+    %br
+    %p= Date.today.strftime("%d/%b/%Y")
+    %p= Time.now.strftime("%I:%M %p")
+  .print_title Reporte de Siniestros
+    

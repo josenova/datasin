@@ -1,0 +1,10 @@
+#Loader
+%script{:type => "text/javascript"}
+  $("#Loader").fakeLoader({timeToHide:4000, zIndex:"19", spinner:"spinner2", bgColor:"#2C3E50"});
+  
+#not_found
+  = image_tag("icons/not_found.png")
+  %br
+  %h2{ :style => "color:#fff; margin-top:15px"} La búsqueda no obtuvo resultados
+  %br
+  = link_to 'Realiza otra búsqueda', root_path, :id => "try_again"

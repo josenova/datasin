@@ -64,7 +64,7 @@
 #sidebar {
  background:$dark-blue;
   width: 14.5%;
-  height: 650px;
+  height: 100%;
   position: fixed;
   top: 42px;
   left: 0px;
@@ -213,7 +213,7 @@ li {
 
 .block_subheader ul li {
    float: left;
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(0, 0, 0, 0.6);
     padding: 3px 10px;
     font-size: 13px;
 }
@@ -277,6 +277,7 @@ text-align:center;
   padding: 9px 18px 9px 39px;
   border-left:2px solid $dark-blue;
     font-size: 13px;
+    background-color: rgba(0,0,0,0.15);
 }
 
 #side_menu #vehicle_icon {
@@ -340,6 +341,7 @@ padding-left: 9px;
   background-color:#F5FAFD;
   display:block;
   border-top:4px solid #2C3E50;
+  margin-bottom: 20px;
 }
 
 #ctl00_ContentPlaceHolder1_GridViewMultas td {
@@ -367,4 +369,31 @@ width:200px;
 
 #ctl00_ContentPlaceHolder1_GridViewMultas tr:last-child {
     display:none;
+}
+
+/*********************************** NOT FOUND  *************************/
+
+
+#not_found {
+  position:fixed;
+  background-image: url(asset-path('nodes.png'));
+  background-color:$dark-blue;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+    z-index: 18;
+    padding: 18% 0 0 0;
+    text-align: center;
+}
+
+#try_again {
+   color: #FFFFFF;
+    background-color: $orange;
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 18px 4px 18px;
+    border-bottom: 2px solid #c52a1a;
+    font-size: 14px;
+    position: relative;
 }

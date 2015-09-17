@@ -43,6 +43,10 @@ header {
   height: 43px;
 }
 
+#print_header, #print_footer, #printed_by {
+  display:none;
+}
+
 #logo {
   background-image: url(asset-path('logo-white.png'));
   background-position:center;
