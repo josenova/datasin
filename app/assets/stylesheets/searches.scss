@@ -426,3 +426,25 @@ width:200px;
     border-left: 5px solid transparent;
 }
 
+[data_tip]:after {
+    display: block;
+    content: attr(data_tip);
+    position: absolute;
+    color: #376130;
+    z-index: 9;
+    top: -10px;
+    right: -35px;
+    font-size: 14px;
+}
+
+[data_tip]:before {
+display: block;
+    content: ' ';
+    position: absolute;
+    top: -8px;
+    right: -16px;
+  border-top: 8px solid #376130;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+

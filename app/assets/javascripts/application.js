@@ -70,7 +70,7 @@ $( document ).ready(function() {
 		}
 		
 		$(".sector span").attr("data-tip", randomNumberFromRange(4,9)+'%');
-		$(".birthdate span").attr("data-tip", randomNumberFromRange(4,11)+'%');
+		$(".birthdate span").attr("data_tip", randomNumberFromRange(4,11)+'%');
 		$(".job span").attr("data-tip", randomNumberFromRange(7,12) +'%');
 		$(".sex span").attr("data-tip", randomNumberFromRange(2,4)+'%');
     
