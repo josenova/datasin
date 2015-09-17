@@ -20,5 +20,15 @@ module SearchesHelper
   	  end
   end
   
+  def age(dob)
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
+  
+  
+  def get_average(the_sector)
+    sector_pop = Client.where(sector: the_sector).count
+    sector_pop
+  end
   
 end

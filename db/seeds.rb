@@ -116,3 +116,4 @@ claims = Claim.create([
 { date:'02-11-2014', number: 'EFGH4352431', amount: 30230.00, policy: Policy.find_by(policy: '417251880765'), vehicle: Vehicle.find_by(vin: '3HBFD60JXAB212016'), claim_type: ClaimType.find_by(name: 'Colisión'), claim_status: ClaimStatus.find_by(status: 'En Proceso')},
 { date:'20-10-2010', number: 'TRPX3748392', amount: 7502.00, policy: Policy.find_by(policy: 'AUTC-7502026771'), vehicle: Vehicle.find_by(vin: '4DFGF43XBSE837483'), claim_type: ClaimType.find_by(name: 'Daños'), claim_status: ClaimStatus.find_by(status: 'Aprobada')}
 ])
+

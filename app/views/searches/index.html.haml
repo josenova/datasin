@@ -17,10 +17,13 @@
             %h4.identification <span>Cédula</span> #{@client.identification.insert(3, '-').insert(11, '-')}
           - if @client.gender
             %h4.sex <span>Sexo</span> #{get_gender @client.gender}
+          - if @client.birthdate
+            %h4.birthdate <span>Edad</span> #{age @client.birthdate}
           - if @client.occupation
             %h4.job <span>Ocupación</span> #{@client.occupation}
           - if @client.sector
             %h4.sector <span>Sector</span> #{@client.sector.name}
+            = get_average(@client.sector)
         = link_to 'Imprimir', '#', :class => "print"
      
         
