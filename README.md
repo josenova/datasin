@@ -1,6 +1,6 @@
 # datasin
 
-Prototipo web para la gestión centralizada de historiales de siniestros. Dirigido al ramo de vehículos de motor del mercado asegurador.
+Prototipo web para la gestión centralizada de historiales de siniestros. Dirigido al ramo de vehículos de motor del mercado asegurador dominicano. 
 
 [www.datasin.net](http://www.datasin.net)
 
