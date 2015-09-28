@@ -55,7 +55,10 @@ class SearchesController < ApplicationController
 				elsif client_query.length == 9 
 					@company = Company.find_by(rnc: client_query)
 				end
-			
+			else
+				#load with dummy data to show off results view
+				client_query = '00117999383'
+				@client = Client.find_by(identification: client_query)
 			end
 			
 			
@@ -67,7 +70,10 @@ class SearchesController < ApplicationController
 				  vehicle_query.upcase!
 					@vehicle = Vehicle.find_by(plate: vehicle_query) 
 				end  
-			
+			else
+				#load with dummy data to show off results view
+				vehicle_query = '1HGBH41JXMN109186'
+				@vehicle = Vehicle.find_by(vin: vehicle_query)
 			end
 			
 		end
@@ -86,7 +92,7 @@ class SearchesController < ApplicationController
 	
 		end
 
-		#Parse Tickets 
+		#Parse Tickets (no longer needed after AMET redesigned website)
 		def parse_tickets(tickets)
 			tickets.search("//b").each do |node|
 				node.replace Nokogiri::XML::Text.new(node.inner_html, node.document)

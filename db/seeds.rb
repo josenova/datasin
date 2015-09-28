@@ -72,8 +72,8 @@ companies = Company.create([
 ])
 
 clients = Client.create([
-{ name: 'José Raúl', surname: 'Nova Rodríguez', identification: '00118530690', gender: true, birthdate: '07-09-1990', address: 'Rafael Hernandez #16', sector: Sector.find_by(name: 'Naco'), occupation: 'Estudiante' },
-{ name: 'Fernando Arturo', surname: 'Báez Tavárez', identification: '00117999383', gender: true, birthdate: '13-01-1988', address: 'Av. Enriquillo', sector: Sector.find_by(name: 'Renacimiento') },
+{ name: 'José Raúl', surname: 'Nova Rodríguez', identification: '00117999383', gender: true, birthdate: '07-06-1980', address: 'Rafael Hernandez #12', sector: Sector.find_by(name: 'Naco'), occupation: 'Estudiante' },
+{ name: 'Fernando Arturo', surname: 'Báez Tavárez', identification: '00117598373', gender: true, birthdate: '13-01-1988', address: 'Av. Enriquillo', sector: Sector.find_by(name: 'Renacimiento') },
 { name: 'Lucia Valeria', surname: 'Guillamón Luna', identification: '00374839360', gender: false, birthdate: '31-01-1989', address: 'Av. Duarte', sector: Sector.find_by(name: 'Gazcue') }
 
 ])
@@ -86,14 +86,14 @@ insurances = Insurance.create([
 ])
 
 user = User.create([
-{ email: 'novajose@gmail.com', password: '12345678', password_confirmation: '12345678', name: 'José Raúl', surname: 'Nova Rodriguez', insurance: Insurance.find_by(company: 'Seguros Constitución')},
+{ email: 'ejemplo@email.com', password: '12345678', password_confirmation: '12345678', name: 'José Raúl', surname: 'Nova Rodriguez', insurance: Insurance.find_by(company: 'Seguros Constitución')},
 { email: 'fernan.baez@gmail.com', password: '12345678', password_confirmation: '12345678', name: 'Fernando A.', surname: 'Báez Tavárez', insurance: Insurance.find_by(company: 'Seguros BanReservas')}
 ])
 
 policies = Policy.create([
-{ policy: 'AUTC-2250108030', coverage: true, start: '28-05-2012', end: '28-05-2013', insurance: Insurance.find_by(company: 'Seguros Constitución'), client: Client.find_by(identification: '00118530690')},
+{ policy: 'AUTC-2250108030', coverage: true, start: '28-05-2012', end: '28-05-2013', insurance: Insurance.find_by(company: 'Seguros Constitución'), client: Client.find_by(identification: '00117999383')},
 { policy: '328062530988', coverage: false, start: '03-06-2010', end: '03-06-2011', insurance: Insurance.find_by(company: 'Seguros Universal'), company: Company.find_by(name: 'Tricom')},
-{ policy: '417251880765', coverage: true, start: '12-09-2014', end: '12-09-2015', insurance: Insurance.find_by(company: 'Seguros BanReservas'), client: Client.find_by(identification: '00118530690')},
+{ policy: '417251880765', coverage: true, start: '12-09-2014', end: '12-09-2015', insurance: Insurance.find_by(company: 'Seguros BanReservas'), client: Client.find_by(identification: '00117999383')},
 { policy: '1-2-500-129304', coverage: false, start: '10-06-2014', end: '10-06-2015', insurance: Insurance.find_by(company: 'Seguros La Colonial'), client: Client.find_by(identification: '00374839360')},
 { policy: 'AUTC-7502026771', coverage: true, start: '10-06-2009', end: '10-06-2011', insurance: Insurance.find_by(company: 'Seguros Constitución'), client: Client.find_by(identification: '00374839360')}
 ])
