@@ -1,7 +1,7 @@
 # datasin
 
-Prototipo web para la gestión centralizada de historiales de siniestros. Dirigido al ramo de vehículos de motor del mercado asegurador dominicano. 
+Datasin is a web platform protoype for the administration of auto insurance claims across all companies inside the insurance market in the Dominican Republic.
 
 [www.datasin.net](http://www.datasin.net)
 
-Hacer clic en el botón de búsqueda sin digitar dato alguno para mostrar el layout de los resultados y del reporte impreso.
+To view the results page layout click search while both fields are empty.
